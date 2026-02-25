@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🃏 Portfolio Booster Pack  
 
-## Getting Started
+**Live Demo:** [Victor M. Herrera](https://victor-herrera.vercel.app/)
+An interactive developer portfolio designed to break away from traditional layouts and present professional experience in a creative, collectible-card format.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎴 Concept  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This portfolio was intentionally built to feel different from the usual section-based websites.  
+Instead of a traditional resume layout, it embraces a **booster pack opening experience**, strongly inspired by trading card games — especially *Magic: The Gathering* and other collectible card games.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The core idea:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> What if a developer’s skills, experience, and background were collectible cards?
 
-## Learn More
+Each section is represented as a card — complete with rarity, visual effects, and interactive animations — creating a playful yet professional experience.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ✨ Design Philosophy  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Break the mold of conventional portfolio websites  
+- Create a memorable first impression  
+- Blend creativity with technical skill  
+- Deliver an interactive and immersive UI  
 
-## Deploy on Vercel
+This project focuses heavily on:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Custom animations  
+- Card flip effects  
+- Visual feedback and rarity feeling  
+- A collectible-inspired layout  
+- Carefully crafted UI details  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠 Tech Stack  
+
+- Next.js  
+- React  
+- JavaScript  
+- HTML5  
+- CSS3  
+- Custom animations & visual effects  
+
+---
+
+## 🚀 Purpose  
+
+This project was built not only to showcase technical skills, but also to demonstrate:
+
+- UI/UX creativity  
+- Frontend architecture  
+- Animation handling  
+- Attention to detail  
+- The ability to turn an idea into an interactive product  
+
+It reflects both my development experience and my passion for game-inspired design systems.
+
+---
+
+## 🎮 Inspiration  
+
+Strongly inspired by:
+
+- Trading Card Games (TCGs)  
+- Magic-style card rarity systems  
+- Booster pack opening experiences  
+- Collectible interfaces and gamified design  
+
+---
+
+## 📌 Final Note  
+
+This portfolio is meant to be explored — not just read.  
+Open the pack. Discover the cards. Build the collection.
