@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import "./Booster.css";
 import { useLanguage } from "@/app/context/LanguageContex";
 import CardsOverlay from "../CardsOverlay/CardsOverlay";
+import Head from "next/head";
 const PRELOAD_CARDS = [
   "/cards/legendary_dev.png",
   "/cards/legendary_dev_esp.png",
