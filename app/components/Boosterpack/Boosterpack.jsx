@@ -4,22 +4,6 @@ import React, { useRef, useState } from "react";
 import "./Booster.css";
 import { useLanguage } from "@/app/context/LanguageContex";
 import CardsOverlay from "../CardsOverlay/CardsOverlay";
-import Head from "next/head";
-const PRELOAD_CARDS = [
-  "/cards/legendary_dev.png",
-  "/cards/legendary_dev_esp.png",
-  "/cards/education.png",
-  "/cards/experience.png",
-  "/cards/skill_(1).png",
-  "/cards/skill_(2).png",
-  "/cards/skill_(3).png",
-  "/cards/skill_(4).png",
-  "/cards/skill_(5).png",
-  "/cards/skill_(6).png",
-  "/cards/skill_(7).png",
-  "/cards/skill_(8).png",
-  "/cards/skill_(9).png",
-];
 
 export default function Boosterpack() {
   const { lang } = useLanguage();
@@ -109,11 +93,6 @@ export default function Boosterpack() {
 
   return (
     <>
-     <Head>
-        {PRELOAD_CARDS.map((src) => (
-          <link key={src} rel="preload" as="image" href={src} />
-        ))}
-      </Head>
       <div
         className={`booster-container ${phase}`}
         ref={boxRef}
