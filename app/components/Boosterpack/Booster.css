@@ -1,0 +1,107 @@
+.booster-container {
+  margin-top: 230px;
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+
+  --mx: 50%;
+  --my: 50%;
+
+  filter: drop-shadow(0 0 18px rgba(0, 200, 255, 0.25));
+  cursor: pointer;
+  position: relative;
+  isolation: isolate;
+
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booster-top,
+.booster-bottom {
+  line-height: 0;
+}
+
+.booster-top {
+  z-index: 2;
+  position: relative;
+  transform-origin: right bottom;
+  will-change: transform, opacity;
+  transition: none;
+}
+
+.booster-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+.booster-container::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  pointer-events: none;
+  z-index: 3;
+
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 40%);
+
+  mix-blend-mode: overlay;
+  transition: opacity 0.15s ease-out;
+  opacity: 1;
+}
+
+.booster-container.shake::before,
+.booster-container.open::before {
+  opacity: 0;
+}
+
+.pack-light {
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  transform: translateX(-50%) scaleY(0.2);
+  width: 220px;
+  height: 140px;
+  border-radius: 999px;
+  opacity: 0;
+
+  background: radial-gradient(circle at 50% 30%, rgba(0, 200, 255, 0.9), rgba(0, 200, 255, 0.2), rgba(0, 0, 0, 0));
+
+  filter: blur(10px);
+  transition: opacity 0.25s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.booster-container.open .pack-light {
+  opacity: 1;
+  transform: translateX(-50%) scaleY(1);
+}
+
+.booster-container.shake {
+  animation: pack-jitter 0.14s ease-in-out;
+}
+
+@keyframes pack-jitter {
+  0% {
+    transform: translateX(0) rotateZ(0deg);
+  }
+  25% {
+    transform: translateX(-2px) rotateZ(-0.6deg);
+  }
+  50% {
+    transform: translateX(2px) rotateZ(0.6deg);
+  }
+  75% {
+    transform: translateX(-1px) rotateZ(-0.3deg);
+  }
+  100% {
+    transform: translateX(0) rotateZ(0deg);
+  }
+}
+
+@media (max-height: 700px) {
+  .booster-container {
+    margin-top: 120px;
+  }
+}
+
+

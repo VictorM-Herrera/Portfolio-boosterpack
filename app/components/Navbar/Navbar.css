@@ -1,0 +1,77 @@
+.navbar {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: #151821;
+  color: #E5E7EB;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+}
+
+.navbar-top{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Título */
+.navbar-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Botonera */
+.navbar-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* Links */
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  color: #CBD5E1;
+  text-decoration: none;
+  padding: 0.4rem 0.6rem;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #60A5FA;
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.6);
+}
+
+
+/* Separadores */
+.divider {
+  min-width: 1px;
+  max-width: 1px;
+  min-height: 2rem;
+  background-color: #CBD5E1;
+  color: #3A3F55;
+  user-select: none;
+}
+.link-title{
+  all: unset;
+}
+
+@media (max-height: 700px){
+  .navbar-top{
+    display: none;
+  }
+}
+
+
+@media (max-height: 600px){
+ .navbar{
+  position: absolute;
+ }
+}

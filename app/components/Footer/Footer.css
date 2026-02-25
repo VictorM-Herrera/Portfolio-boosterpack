@@ -1,0 +1,26 @@
+.footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    font-size: x-small;
+    color: white;
+}
+.language{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+    color: white;
+    font-size: x-small;
+}
+
+.language img{
+    cursor: pointer;
+}

@@ -1,0 +1,20 @@
+body{
+    margin: 0;
+    padding: auto;
+    background-color: #0F1115;
+    overflow-x: hidden;
+}
+
+.section{
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+}
+.pack-wrapper {
+    position: relative;
+  position: relative;
+  display: inline-block;
+}
