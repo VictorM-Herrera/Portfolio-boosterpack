@@ -17,10 +17,12 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const isProd = process.env.NODE_ENV === 'production';
   return (
     <html lang="en">
       <head>
-        <Script>
+        {isProd && (
+          <Script>
           {`
             (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -29,6 +31,7 @@ export default function RootLayout({ children }) {
             })(window, document, "clarity", "script", "vqlspa7gbz");
           `}
         </Script>
+        )}
       </head>
       <body className={inter.className}>
         <LanguageProvider>
