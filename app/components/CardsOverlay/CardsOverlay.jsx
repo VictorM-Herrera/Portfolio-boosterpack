@@ -139,7 +139,7 @@ export default function CardsOverlay({ showOverlay }) {
                   width={step === 2 ? 200 : 350}
                   height={step === 2 ? 300 : 530}
                   className={`card-image-${step}`}
-                  priority={index < 2}
+                  priority
                 />
 
                 {tooltip?.card === card && tooltip.info && (

@@ -18,7 +18,7 @@ export default function NormalPortfolio({ view, setView }) {
       <div className="normal-layout">
         <aside className="normal-sidebar">
           <div className="normal-avatar">
-            <Image src={"/hero_image.png"} alt="Hero image" width={140} height={140} />
+            <Image src={"/hero_image.png"} alt="Hero image" width={140} height={140} priority/>
           </div>
           <h1 className="normal-name">Victor M. Herrera</h1>
           <p className="normal-role">{lang === "en" ? "Full Stack Developer" : "Desarrollador Full Stack"}</p>

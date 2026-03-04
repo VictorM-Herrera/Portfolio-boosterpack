@@ -103,11 +103,11 @@ export default function Boosterpack() {
         <div className="pack-light" />
 
         <div className="booster-top" ref={topRef}>
-          <Image src={"/booster/1234.png"} alt="" width={280} height={55} />
+          <Image src={"/booster/1234.png"} alt="" width={280} height={55} priority/>
         </div>
 
         <div className="booster-bottom">
-          <Image src={"/booster/12345.png"} alt="booster" width={280} height={500} />
+          <Image src={"/booster/12345.png"} alt="booster" width={280} height={500} priority/>
         </div>
       </div>
       <CardsOverlay showOverlay={showOverlay}/>

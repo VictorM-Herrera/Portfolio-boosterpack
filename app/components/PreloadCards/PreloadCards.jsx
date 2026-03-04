@@ -1,14 +1,11 @@
 "use client";
 import { useEffect } from "react";
 
-const PRELOAD_MAIN = [
+const WARMUP_IMAGES = [
   "/cards/legendary_dev.png",
   "/cards/legendary_dev_esp.png",
   "/cards/education.png",
   "/cards/experience.png",
-];
-
-const PRELOAD_SKILLS = [
   "/cards/skill_(1).png",
   "/cards/skill_(2).png",
   "/cards/skill_(3).png",
@@ -18,40 +15,18 @@ const PRELOAD_SKILLS = [
   "/cards/skill_(7).png",
   "/cards/skill_(8).png",
   "/cards/skill_(9).png",
+  "/hero_image.png",
 ];
+
 
 export default function PreloadCards() {
   useEffect(() => {
-    PRELOAD_MAIN.forEach((src) => {
-      const img = new Image();
+    WARMUP_IMAGES.forEach((src) => {
+      const img = new window.Image();
+      img.decoding = "async";
+      img.loading = "eager";
       img.src = src;
     });
-
-    const loadSkills = () => {
-      PRELOAD_SKILLS.forEach((src) => {
-        const img = new Image();
-        img.src = src;
-      });
-    };
-
-    let idleId = null;
-    let timeoutId = null;
-
-    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(loadSkills);
-    } else {
-      timeoutId = setTimeout(loadSkills, 800);
-    }
-
-    return () => {
-      if (idleId && typeof window !== "undefined" && "cancelIdleCallback" in window) {
-        window.cancelIdleCallback(idleId);
-      }
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
   }, []);
-
   return null;
 }
