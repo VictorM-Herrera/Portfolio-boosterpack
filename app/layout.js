@@ -2,6 +2,7 @@
 import Script from 'next/script';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
+import { Analytics } from "@vercel/analytics/next"
 import { LanguageProvider } from './context/LanguageContex';
 import { ToastProvider } from './context/ToastContext';
 import './global.css';
