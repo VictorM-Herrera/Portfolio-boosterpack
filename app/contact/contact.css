@@ -117,3 +117,8 @@ textarea::placeholder {
     padding-top: 75px;
   }
 }
+@media (max-width: 576px) {
+    .contact-section{
+      transform: scale(.75);
+    }
+}

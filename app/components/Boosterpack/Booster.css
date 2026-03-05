@@ -104,4 +104,11 @@
   }
 }
 
+@media (max-width:576px){
+  .booster-container{
+    transform: scale(.8);
+    margin-top: 184px;
+  }
+}
+
 

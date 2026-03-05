@@ -19,3 +19,17 @@
   color: #ffffff;
   text-shadow: 0 0 6px #00bfff;
 }
+@media (max-width: 700px) {
+    .cursor-container{
+        transform: scale(.8);
+        right: 62px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cursor-container{
+        transform: scale(.5);
+        top: 50%;
+        right: -40px;
+    }
+}

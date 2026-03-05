@@ -39,10 +39,10 @@ export default function RootLayout({ children }) {
           <Navbar/>
           <ToastProvider>
             {children}
-
           </ToastProvider>
           <Footer/>
         </LanguageProvider>
+        {/* <Analytics/> */}
       </body>
     </html>
   );

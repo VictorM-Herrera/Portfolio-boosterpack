@@ -29,7 +29,7 @@ export default function Navbar() {
         <span className="divider"></span>
 
         <Link className="nav-link" href={pathname === "/contact" ? "/" : "/contact"}>
-        {pathname==="/contact" ? (lang ==='en' ? 'Home' : 'Inicio') : (lang === 'en' ? 'Contact me' : 'Contactame')}
+        {pathname==="/contact" ? (lang ==='en' ? 'Home' : 'Inicio') : (lang === 'en' ? 'Contact me' : 'Contáctame')}
         </Link>
         <span className="divider"></span>
 
@@ -40,7 +40,7 @@ export default function Navbar() {
         <span className="divider"></span>
 
         <Link className="nav-link" href={pathname === "/collection" ? "/" : "/collection"}>
-        {pathname==="/collection" ? (lang ==='en' ? 'Home' : 'Inicio') : (lang === 'en'? "See Collection" : 'Ver Coleccion')}
+        {pathname==="/collection" ? (lang ==='en' ? 'Home' : 'Inicio') : (lang === 'en'? "See Collection" : 'Ver Colección')}
         </Link>
       </div>
     </nav>
