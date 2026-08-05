@@ -18,7 +18,45 @@ const skillCards = [
 
 export default function CollectionSection({ view, setView }) {
   const snapRef = useRef(null);
+  const skillsRowRef = useRef(null);
+  const skillDragRef = useRef({ active: false, startX: 0, scrollLeft: 0 });
   const { lang } = useLanguage();
+
+  const startSkillDrag = (e) => {
+    if (e.button > 0) return;
+
+    const el = skillsRowRef.current;
+    if (!el) return;
+
+    skillDragRef.current = {
+      active: true,
+      startX: e.clientX,
+      scrollLeft: el.scrollLeft,
+    };
+
+    el.classList.add("is-dragging");
+    el.setPointerCapture?.(e.pointerId);
+  };
+
+  const moveSkillDrag = (e) => {
+    if (!skillDragRef.current.active) return;
+
+    const el = skillsRowRef.current;
+    if (!el) return;
+
+    const walk = e.clientX - skillDragRef.current.startX;
+    el.scrollLeft = skillDragRef.current.scrollLeft - walk;
+    e.preventDefault();
+  };
+
+  const stopSkillDrag = (e) => {
+    if (!skillDragRef.current.active) return;
+
+    skillDragRef.current.active = false;
+    skillsRowRef.current?.classList.remove("is-dragging");
+    skillsRowRef.current?.releasePointerCapture?.(e.pointerId);
+  };
+
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 900px)");
 
@@ -158,7 +196,15 @@ export default function CollectionSection({ view, setView }) {
             <div className="collection-section column">
               <h2 className="skills-title">{lang === "en" ? "Skills" : "Habilidades"}</h2>
 
-              <div className="skills-row">
+              <div
+                className="skills-row"
+                ref={skillsRowRef}
+                onPointerDown={startSkillDrag}
+                onPointerMove={moveSkillDrag}
+                onPointerUp={stopSkillDrag}
+                onPointerCancel={stopSkillDrag}
+                onPointerLeave={stopSkillDrag}
+              >
                 {skillCards.map((src) => (
                   <div className="skill-card" key={src}>
                     <div className="spin-card-skill">
