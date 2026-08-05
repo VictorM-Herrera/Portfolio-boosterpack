@@ -222,9 +222,18 @@
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   justify-content: flex-start;
+  cursor: grab;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  user-select: none;
 
   scrollbar-width: thin;
   scrollbar-color: rgba(90, 160, 255, 0.75) rgba(15, 18, 26, 0.35);
+}
+
+.skills-row.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
 }
 
 .skills-row::-webkit-scrollbar {
@@ -320,6 +329,8 @@
 .spin-card-skill img{
   width: 100%;
   height: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .spin-card-skill:hover .spin-card-inner {
@@ -375,11 +386,17 @@
   }
 }
 
-@media (max-height: 700px) {
+@media (max-height: 700px) and (min-width: 901px) {
+  .collection-wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
   .collection-page {
-    height: auto;
+    height: 100%;
     padding-top: 72px;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .view-toggle {
@@ -391,13 +408,34 @@
     top: 91px;
   }
 
+  .collection-snap {
+    height: calc(100vh - 72px);
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+  }
+
+  .snap-section {
+    height: calc(100vh - 72px);
+    padding: 14px 0;
+  }
+
   .spin-card {
     width: 260px;
     height: 390px;
     margin: 0 auto;
   }
   .collection-section {
-    gap: 0px;
+    gap: 1rem;
+  }
+  .collection-text-area {
+    padding: 1.5rem;
+  }
+  .collection-text-area h2 {
+    font-size: 1.55rem;
+  }
+  .collection-text-area p,
+  .collection-text-area li {
+    font-size: 0.92rem;
   }
   .skills-title {
     font-size: 1.8rem;

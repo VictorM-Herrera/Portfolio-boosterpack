@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Overlay.css";
 import { useLanguage } from "@/app/context/LanguageContex";
 import Image from "next/image";
@@ -88,11 +88,52 @@ function getTooltip(step, lang, index) {
   return educationExperienceTooltips[key][index] || null;
 }
 
+function getCardSize(step) {
+  if (step === 0) return { width: 350, height: 530 };
+  if (step === 1) return { width: 270, height: 400 };
+  return { width: 200, height: 300 };
+}
+
+function OverlayCardImage({ card, step, index }) {
+  const [loaded, setLoaded] = useState(false);
+  const { width, height } = getCardSize(step);
+
+  return (
+    <div
+      className={`card-frame card-frame-${step} ${loaded ? "is-loaded" : ""}`}
+      style={{
+        "--card-width": `${width}px`,
+        "--card-height": `${height}px`,
+      }}
+    >
+      <Image
+        src={card}
+        alt={step === 2 ? `skill card ${index + 1}` : "portfolio card"}
+        width={width}
+        height={height}
+        className={`card-image-${step}`}
+        draggable={false}
+        loading={step === 0 ? undefined : "lazy"}
+        priority={step === 0}
+        sizes={
+          step === 2
+            ? "(max-width: 768px) 42vw, 200px"
+            : "(max-width: 520px) 86vw, (max-height: 700px) 46vh, 350px"
+        }
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  );
+}
+
 export default function CardsOverlay({ showOverlay }) {
   const { lang } = useLanguage();
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [tooltip, setTooltip] = useState(null);
+  const scrollRef = useRef(null);
+  const dragRef = useRef({ active: false, startX: 0, scrollLeft: 0 });
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleContinue = () => {
     if (step === 2) {
@@ -102,24 +143,64 @@ export default function CardsOverlay({ showOverlay }) {
     setStep((s) => Math.min(s + 1, 2));
   };
 
-  const handleMove = (e, card, info) => {
+  const handleEnter = (card, info) => {
     if (!info) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
 
-    setTooltip({ card, x, y, info });
+    setTooltip({ card, info });
   };
 
   function reset() {
     setTooltip(null);
   }
 
+  const startDrag = (e) => {
+    if (step !== 2 || e.button > 0) return;
+
+    const el = scrollRef.current;
+    if (!el) return;
+
+    dragRef.current = {
+      active: true,
+      startX: e.clientX,
+      scrollLeft: el.scrollLeft,
+    };
+
+    setIsDragging(true);
+    el.setPointerCapture?.(e.pointerId);
+  };
+
+  const moveDrag = (e) => {
+    if (!dragRef.current.active) return;
+
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const walk = e.clientX - dragRef.current.startX;
+    el.scrollLeft = dragRef.current.scrollLeft - walk;
+    e.preventDefault();
+  };
+
+  const stopDrag = (e) => {
+    if (!dragRef.current.active) return;
+
+    dragRef.current.active = false;
+    setIsDragging(false);
+    scrollRef.current?.releasePointerCapture?.(e.pointerId);
+  };
+
   return showOverlay ? (
     <div className="overlay">
       <h1 className="overlay-title">{getTitleByStep(step, lang)}</h1>
 
-      <div className="card-scroll-wrapper">
+      <div
+        ref={scrollRef}
+        className={`card-scroll-wrapper ${step === 2 ? "is-draggable" : ""} ${isDragging ? "is-dragging" : ""}`}
+        onPointerDown={startDrag}
+        onPointerMove={moveDrag}
+        onPointerUp={stopDrag}
+        onPointerCancel={stopDrag}
+        onPointerLeave={stopDrag}
+      >
         <div key={step} className={`card-section step-${step}`}>
           {getCardsByStep(step, lang).map((card, index) => {
             const info = getTooltip(step, lang, index);
@@ -128,28 +209,14 @@ export default function CardsOverlay({ showOverlay }) {
               <div
                 key={card.src || index}
                 className="card-wrapper flip-in"
-                onMouseEnter={(e) => handleMove(e, card, info)}
-                onMouseMove={(e) => handleMove(e, card, info)}
+                onMouseEnter={() => handleEnter(card, info)}
                 onMouseLeave={reset}
                 style={{ animationDelay: `${index * 0.12}s` }}
               >
-                <Image
-                  src={card}
-                  alt={typeof card === "string" ? card : "card"}
-                  width={step === 2 ? 200 : 350}
-                  height={step === 2 ? 300 : 530}
-                  className={`card-image-${step}`}
-                  priority
-                />
+                <OverlayCardImage card={card} step={step} index={index} />
 
                 {tooltip?.card === card && tooltip.info && (
-                  <div
-                    className="tooltip"
-                    style={{
-                      left: tooltip.x + 12,
-                      top: tooltip.y + 12,
-                    }}
-                  >
+                  <div className="tooltip">
                     <div className="tooltip-title">{tooltip.info.title}</div>
                     <div className="tooltip-subtitle">{tooltip.info.subtitle}</div>
                     <p className="tooltip-body">{tooltip.info.body}</p>
